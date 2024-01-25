@@ -1,17 +1,7 @@
-<IfModule mod_rewrite.c>
-    <IfModule mod_negotiation.c>
-        Options -MultiViews -Indexes
-    </IfModule>
+RewriteEngine on
+RewriteBase /
+# Rewrites all URLS [Replace "example" with the actual domain, without the TLD (.com, .net, .biz, etc)]
+RewriteCond %{HTTP_HOST} ^(custom\.)?benstheory\.
 
-    RewriteEngine On
-
-    # Redirect Trailing Slashes If Not A Folder...
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond %{REQUEST_URI} (.+)/$
-    RewriteRule ^ %1 [L,R=301]
-
-    # Handle Front Controller...
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^ public/index.php [L]
-</IfModule>
+# Rewrite all those to insert /folder
+RewriteRule ^(.*)$ /public/$1 [L]
