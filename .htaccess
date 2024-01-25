@@ -1,7 +1,7 @@
 RewriteEngine on
 RewriteBase /
 # Rewrites all URLS [Replace "example" with the actual domain, without the TLD (.com, .net, .biz, etc)]
-RewriteCond %{HTTP_HOST} ^(custom\.)?benstheory\.
+RewriteCond %{HTTP_HOST} ^(custom\.)?benstheory\.com
 
 # Rewrite all those to insert /folder
 RewriteRule ^(.*)$ /public/$1 [L]
