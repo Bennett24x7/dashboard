@@ -1,65 +1,45 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Models;
 
-use App\Models\User; // Import the User model
-use Illuminate\Http\Request;
+// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
-class UserController extends Controller
+class User extends Authenticatable
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $users = User::all();
-        return response()->json(['users' => $users], 200);
-    }
+    use HasApiTokens, HasFactory, Notifiable;
 
     /**
-     * Store a newly created resource in storage.
+     * The attributes that are mass assignable.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @var array<int, string>
      */
-    public function store(Request $request)
-    {
-        // Logic for storing a new user
-    }
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+    ];
 
     /**
-     * Display the specified resource.
+     * The attributes that should be hidden for serialization.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @var array<int, string>
      */
-    public function show($id)
-    {
-        // Logic for displaying a specific user
-    }
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
 
     /**
-     * Update the specified resource in storage.
+     * The attributes that should be cast.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @var array<string, string>
      */
-    public function update(Request $request, $id)
-    {
-        // Logic for updating a user
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        // Logic for deleting a user
-    }
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
+    ];
 }
