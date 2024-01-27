@@ -19,6 +19,7 @@ class dummyAPI extends Controller
         $leads->lname = $req->lname;
         $leads->email = $req->email;
         $leads->phone = $req->phone;
+        $leads->resume = $req->resume;
 
         // Attempt to save the data
         if ($leads->save()) {
@@ -26,5 +27,10 @@ class dummyAPI extends Controller
         } else {
             return ["result" => "Failed to save data"];
         }
+    }
+
+    function list()
+    {
+        return leads::all();
     }
 }

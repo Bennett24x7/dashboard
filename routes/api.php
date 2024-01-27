@@ -23,4 +23,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('dummy',[dummyAPI::class, 'getData']);
 
-Route::get('getMethod',[postAPI::class, 'list']);
+Route::get('getMethod',[dummyAPI::class, 'list']);
