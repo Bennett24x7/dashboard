@@ -19,7 +19,7 @@ class dummyAPI extends Controller
             // Access the file using $req->file('resume')
             $file = $req->file('resume');
             // Store the uploaded file in the specified directory
-            $upload_file = $file->store('public/resume/');
+            $upload_file = $file->store('public/resume');
 
             // Create a new leads instance
             $leads = new leads;
