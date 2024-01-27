@@ -13,13 +13,13 @@ class dummyAPI extends Controller
         if (empty($req->fname) || empty($req->email)) {
             return ["result" => "Failed: Required fields are empty"];
         }
-
+    
         $leads = new leads;
         $leads->fname = $req->fname;
         $leads->lname = $req->lname;
         $leads->email = $req->email;
         $leads->phone = $req->phone;
-
+    
         // Check if a file is uploaded
         if ($req->hasFile('resume')) {
             $file = $req->file('resume');
@@ -29,14 +29,14 @@ class dummyAPI extends Controller
             // Save the file name to the database
             $leads->resume = $fileName;
         }
-
+    
         // Attempt to save the data
         if ($leads->save()) {
             return ["result" => "Data has been saved"];
         } else {
             return ["result" => "Failed to save data"];
         }
-    }
+    }    
 
     function list()
     {
