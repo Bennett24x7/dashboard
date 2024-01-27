@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\leads;
 use Illuminate\Http\Request;
 
 class dummyAPI extends Controller
 {
-    function getData()
+    function getData(Request $req)
     {
-        return ["name"=>"Bennett"];
+        $leads = new leads;
+        return ["result"=>"data has been saved"];
     }
 }
