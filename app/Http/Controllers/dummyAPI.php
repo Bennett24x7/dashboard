@@ -14,30 +14,31 @@ class dummyAPI extends Controller
             return ["result" => "Failed: Required fields are empty"];
         }
 
-        $upload_file = $req->file->store('public/resume/');
-
-        $leads = new leads;
-        $leads->fname = $req->fname;
-        $leads->lname = $req->lname;
-        $leads->email = $req->email;
-        $leads->phone = $req->phone;
-        $leads->resume = $req->file->hasName();
-
         // Check if a file is uploaded
-        // if ($req->hasFile('resume')) {
-        //     $file = $req->file('resume');
-        //     $fileName = time() . '_' . $file->getClientOriginalName();
-        //     // Move the uploaded file to a directory within the public folder
-        //     $file->move(public_path('resumes'), $fileName);
-        //     // Save the file name to the database
-        //     $leads->resume = $fileName;
-        // }
+        if ($req->hasFile('resume')) {
+            // Access the file using $req->file('resume')
+            $file = $req->file('resume');
+            // Store the uploaded file in the specified directory
+            $upload_file = $file->store('public/resume/');
 
-        // Attempt to save the data
-        if ($leads->save()) {
-            return ["result" => "Data has been saved"];
+            // Create a new leads instance
+            $leads = new leads;
+            // Assign values to the leads instance properties
+            $leads->fname = $req->fname;
+            $leads->lname = $req->lname;
+            $leads->email = $req->email;
+            $leads->phone = $req->phone;
+            // Store the file path in the 'resume' field
+            $leads->resume = $upload_file;
+
+            // Attempt to save the data
+            if ($leads->save()) {
+                return ["result" => "Data has been saved"];
+            } else {
+                return ["result" => "Failed to save data"];
+            }
         } else {
-            return ["result" => "Failed to save data"];
+            return ["result" => "Failed: No file uploaded"];
         }
     }
 
