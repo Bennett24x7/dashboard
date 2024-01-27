@@ -10,6 +10,17 @@ class dummyAPI extends Controller
     function getData(Request $req)
     {
         $leads = new leads;
-        return ["result"=>"data has been saved"];
+        $leads->fname=$req->fname;
+        $leads->lname=$req->lname;
+        $leads->email=$req->email;
+        $leads->phone=$req->phone;
+        $result = $leads->save();
+        if($result){
+            return ["result"=>"data has been saved"];
+        }
+        else
+        {
+            return ["result"=>"failed"];
+        }
     }
 }
