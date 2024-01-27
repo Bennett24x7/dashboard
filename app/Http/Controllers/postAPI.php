@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class postAPI extends Controller
 {
     //
-    function getMethod()
+    function list()
     {
         return leads::all();
     }

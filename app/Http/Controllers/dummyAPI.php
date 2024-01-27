@@ -27,9 +27,4 @@ class dummyAPI extends Controller
             return ["result" => "Failed to save data"];
         }
     }
-
-    function getMethod()
-    {
-        return getData::all();
-    }
 }
