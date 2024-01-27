@@ -19,7 +19,16 @@ class dummyAPI extends Controller
         $leads->lname = $req->lname;
         $leads->email = $req->email;
         $leads->phone = $req->phone;
-        $leads->resume = $req->resume;
+
+        // Check if a file is uploaded
+        if ($req->hasFile('resume')) {
+            $file = $req->file('resume');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            // Move the uploaded file to a directory within the public folder
+            $file->move(public_path('resumes'), $fileName);
+            // Save the file name to the database
+            $leads->resume = $fileName;
+        }
 
         // Attempt to save the data
         if ($leads->save()) {
