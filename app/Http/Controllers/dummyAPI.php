@@ -14,31 +14,27 @@ class dummyAPI extends Controller
             return ["result" => "Failed: Required fields are empty"];
         }
 
-        // Check if a file is uploaded
+        $leads = new leads;
+        $leads->fname = $req->fname;
+        $leads->lname = $req->lname;
+        $leads->email = $req->email;
+        $leads->phone = $req->phone;
+
+        //Check if a file is uploaded
         if ($req->hasFile('resume')) {
-            // Access the file using $req->file('resume')
             $file = $req->file('resume');
-            // Store the uploaded file in the specified directory
-            $upload_file = $file->store('public/resume');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            // Move the uploaded file to a directory within the public folder
+            $file->move(public_path('resumes'), $fileName);
+            // Save the file name to the database
+            $leads->resume = $fileName;
+        }
 
-            // Create a new leads instance
-            $leads = new leads;
-            // Assign values to the leads instance properties
-            $leads->fname = $req->fname;
-            $leads->lname = $req->lname;
-            $leads->email = $req->email;
-            $leads->phone = $req->phone;
-            // Store the file path in the 'resume' field
-            $leads->resume = $upload_file;
-
-            // Attempt to save the data
-            if ($leads->save()) {
-                return ["result" => "Data has been saved"];
-            } else {
-                return ["result" => "Failed to save data"];
-            }
+        // Attempt to save the data
+        if ($leads->save()) {
+            return ["result" => "Data has been saved"];
         } else {
-            return ["result" => "Failed: No file uploaded"];
+            return ["result" => "Failed to save data"];
         }
     }
 
