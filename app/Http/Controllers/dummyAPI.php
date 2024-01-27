@@ -30,6 +30,6 @@ class dummyAPI extends Controller
 
     function getMethod()
     {
-        return leads::all();
+        return getData::all();
     }
 }
