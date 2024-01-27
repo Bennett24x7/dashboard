@@ -27,7 +27,7 @@ class dummyAPI extends Controller
             // Move the uploaded file to a directory within the public folder
             $file->move(public_path('resumes'), $fileName);
             // Save the file path to the database
-            $leads->resume = 'resumes/' . $fileName; // Store the relative path
+            $leads->resume = 'https://custom.benstheory.com/public/resumes/' . $fileName; // Store the relative path
         }
 
         // Attempt to save the data
