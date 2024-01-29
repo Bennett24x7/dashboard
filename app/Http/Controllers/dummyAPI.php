@@ -10,15 +10,46 @@ class dummyAPI extends Controller
     function getData(Request $req)
     {
         // Basic validation to check if required fields are not empty
-        if (empty($req->fname) || empty($req->email)) {
+        if (empty($req->name) || empty($req->email)) {
             return ["result" => "Failed: Required fields are empty"];
         }
 
         $leads = new leads;
-        $leads->fname = $req->fname;
-        $leads->lname = $req->lname;
-        $leads->email = $req->email;
+        $leads->name = $req->name;
+        $leads->email = $req->email;    
         $leads->phone = $req->phone;
+        $leads->address = $req->address;
+        $leads->website = $req->website;
+        $leads->linkedin =$req->linkedin;
+        $leads->country = $req->country;
+        $leads->native_english_speaker = $req->native_english_speaker;
+        $leads->skill = $req->skill;
+        $leads->other_skill = $req->other_skill;
+        $leads->experience = $req->experience;
+        $leads->subject_speciality = $req->subject_speciality;
+        $leads->other_subject_speciality = $req->other_subject_speciality;
+        $leads->genre = $req->genre;
+        $leads->other_genre = $req->other_genre;
+        $leads->education = $req->education;
+        $leads->specialization = $req->specialization;
+        $leads->non_english = $req->non_english;
+        $leads->french = $req->french;
+        $leads->spanish = $req->spanish;
+        $leads->italian = $req->italian;
+        $leads->japanese = $req->japanese;
+        $leads->chinease = $req->chinease;
+        $leads->dutch = $req->dutch;
+        $leads->german = $req->german;
+        $leads->special_instruction = $req->special_instruction;
+        $leads->work_handled = $req->work_handled;
+        $leads->publisher_vendor = $req->publisher_vendor;
+        $leads->format_handle = $req->format_handle;
+        $leads->other_format = $req->other_format;
+        $leads->currency = $req->currency;
+        $leads->other_currency = $req->other_currency;
+        $leads->testimony = $req->testimony;
+        $leads->file_upload = $req->file_upload;
+
 
         //Check if a file is uploaded
         if ($req->hasFile('resume')) {
