@@ -73,10 +73,10 @@ class dummyAPI extends Controller
     {
         $leads = Leads::all()
         ->map(function ($lead) {
-            $other_lang = [$lead->french, $lead->spanish, $lead->italian, $lead->japanese, $lead->chinease, $lead->dutch, $lead->german];
-            $lead->other_lang = array_filter($other_lang);
-            unset($lead->french, $lead->spanish, $lead->italian, $lead->japanese, $lead->chinease, $lead->dutch, $lead->german);
-            return $lead;
+            // $other_lang = [$lead->french, $lead->spanish, $lead->italian, $lead->japanese, $lead->chinease, $lead->dutch, $lead->german];
+            // $lead->other_lang = array_filter($other_lang);
+            // unset($lead->french, $lead->spanish, $lead->italian, $lead->japanese, $lead->chinease, $lead->dutch, $lead->german);
+            // return $lead;
         });
     
         return response()->json($leads);
