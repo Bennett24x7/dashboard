@@ -73,9 +73,16 @@ class dummyAPI extends Controller
     {
         $leads = Leads::select('id','name','email','phone','address','website','linkedin','country','native_english_speaker','skill',
         'other_skill','experience','subject_speciality','other_subject_speciality','genre','other_genre','education','specialization',
-        'non_english','french','spanish','italian','japanese','chinease','dutch','german','special_instruction','work_handled',
-        'publisher_vendor','format_handle','other_format','currency','other_currency','testimony','file_upload','updated_at')
-        -> get();
+        'non_english','special_instruction','work_handled','publisher_vendor','format_handle','other_format','currency',
+        'other_currency','testimony','file_upload','updated_at')
+        ->get()
+        ->map(function ($lead) {
+            $other_lang = [$lead->french, $lead->spanish, $lead->italian, $lead->japanese, $lead->chinease, $lead->dutch, $lead->german];
+            $lead->other_lang = array_filter($other_lang);
+            unset($lead->french, $lead->spanish, $lead->italian, $lead->japanese, $lead->chinease, $lead->dutch, $lead->german);
+            return $lead;
+        });
+    
         return response()->json($leads);
     }
 }
