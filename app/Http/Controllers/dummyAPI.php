@@ -71,7 +71,7 @@ class dummyAPI extends Controller
 
     function list()
     {
-        $leads = Leads::select('name','email','phone','address','website','linkedin','country','native_english_speaker','skill',
+        $leads = Leads::select('id','name','email','phone','address','website','linkedin','country','native_english_speaker','skill',
         'other_skill','experience','subject_speciality','other_subject_speciality','genre','other_genre','education','specialization',
         'non_english','french','spanish','italian','japanese','chinease','dutch','german','special_instruction','work_handled',
         'publisher_vendor','format_handle','other_format','currency','other_currency','testimony','file_upload','updated_at')
