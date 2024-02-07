@@ -78,7 +78,7 @@ class dummyAPI extends Controller
 
     function getLeadById() 
     {
-        $lead = Leads::find($id);
+        $lead = Leads::find($name);
         if(!$lead)
         {
             return response()->json(['error' => 'Lead not found'], 404);
