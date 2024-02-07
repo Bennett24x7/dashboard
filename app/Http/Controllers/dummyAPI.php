@@ -15,6 +15,7 @@ class dummyAPI extends Controller
         }
 
         $leads = new leads;
+        $leads->id = $req->id;
         $leads->name = $req->name;
         $leads->email = $req->email;    
         $leads->phone = $req->phone;
