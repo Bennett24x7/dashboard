@@ -85,4 +85,22 @@ class dummyAPI extends Controller
 
         return response()->json($lead);
     }
+
+    function deleteLeadById($id)
+    {
+        $lead = Leads::find($id);
+        if(!$lead)
+        {
+            return response()->json(['error' => 'Lead not found'], 404);
+        }
+
+        if($lead->delete())
+        {
+            return response()->json(['message' => 'Lead deleted successfully']);
+        } else {
+            return response()->json(['error' => 'Failed to delete lead'], 500);
+        }
+
+    }
+
 }
