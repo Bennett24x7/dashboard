@@ -26,3 +26,5 @@ Route::post('dummy',[dummyAPI::class, 'getData']);
 Route::get('getMethod',[dummyAPI::class, 'list']);
 
 Route::get('getMethod/{id}',[dummyAPI::class, 'getLeadById']);
+
+Route::delete('delete/{id}',[dummyAPI::class, 'deleteLeadById']);
