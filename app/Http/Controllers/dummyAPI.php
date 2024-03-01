@@ -24,6 +24,9 @@ class dummyAPI extends Controller
         $leads->linkedin =$req->linkedin;
         $leads->country = $req->country;
         $leads->native_english_speaker = $req->native_english_speaker;
+        $leads->cms = $req->cms;
+        $leads->apa = $req->apa;
+        $leads->mla = $req->mla;
         $leads->skill = $req->skill;
         $leads->other_skill = $req->other_skill;
         $leads->experience = $req->experience;
@@ -41,6 +44,8 @@ class dummyAPI extends Controller
         $leads->chinease = $req->chinease;
         $leads->dutch = $req->dutch;
         $leads->german = $req->german;
+        $leads->current_position = $req->current_position;
+        $leads->availability = $req->availability;
         $leads->special_instruction = $req->special_instruction;
         $leads->work_handled = $req->work_handled;
         $leads->publisher_vendor = $req->publisher_vendor;
