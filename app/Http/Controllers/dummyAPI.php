@@ -23,6 +23,8 @@ class dummyAPI extends Controller
         $leads->website = $req->website;
         $leads->linkedin =$req->linkedin;
         $leads->country = $req->country;
+        $leads->individual_company = $req->individual_company;
+        $leads->company_name = $req->company_name;
         $leads->native_english_speaker = $req->native_english_speaker;
         $leads->cms = $req->cms;
         $leads->apa = $req->apa;
